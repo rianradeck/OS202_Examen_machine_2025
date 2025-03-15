@@ -4,7 +4,7 @@
 - **A rendre** : Les trois fichiers pythons parallélisés et un document (pdf, markdown, etc.) pour les réponses aux questions
 - Les fichiers devront être envoyés sous forme de fichiers pythons *non compressés* aux adresses suivantes (selon votre groupe de TP) :
   - xavier.juvigny@onera.fr (Groupe 1)
-  - jeand-didier.garaud@onera.fr (Groupe 2)
+  - jean-didier.garaud@onera.fr (Groupe 2)
   - apf@crans.org (Groupe 3)
 
 
@@ -62,7 +62,7 @@ F_{D} = \frac{1}{256}\left(\begin{array}{ccccc}
 \end{array}\right)
 $$
 
-## B] A FAIRE
+## B] A FAIRE
 
 ### 1. Environnement de calcul
 
@@ -74,32 +74,32 @@ Le but de ce programme est de doubler la taille des images d'une vidéo sans tro
 
 On va donc appliquer les filtres $F_{G}$ et $F_{S}$ vus plus haut sur un grand nombre d'images (les images issues de la vidéo). 
 
-- Expliquer votre stratégie de parallélisation et pourquoi ce type de parallélisation est bien adapté à ce problème et optimal.
+- Expliquer votre stratégie de parallélisation et pourquoi ce type de parallélisation est bien adapté à ce problème et est optimal.
 - Paralléliser le programme `movie_filter.py` correspondant à ce problème
-- Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs que vous disposez) la courbe d'accélération de votre programme paralléle.
+- Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs que vous disposez) la courbe d'accélération de votre programme parallèle.
 
 ### 3. Parallélisation d'une photo en haute résolution (1)
 
-Le but de ce programme est de doubler la taille d'une photo tout en évitant d'avoir une photo pixelliser à la fin.
+Le but de ce programme est de doubler la taille d'une photo tout en évitant d'avoir une photo pixellisée à la fin.
 
 On cherche à ce que chaque processus utilise un minimum de mémoire en évitant de prendre des bouts d'images trop grand par processus (que le strict minimum nécessaire pour la parallélisation).
 
-On applique ici consécutivement les filtres $F_{G}$ sur les trois composantes H,S et V de l'image et $F_{S}$ sur la composante $V$ de l'image.
+On applique ici consécutivement les filtres $F_{G}$ sur les trois composantes H, S et V de l'image et $F_{S}$ sur la composante $V$ de l'image.
 
 - Expliquer votre stratégie de parallélisation et pourquoi ce type de parallélisation est adapté à votre problème.
-- Est-ce que cette stratégie mise-en-place serait optimale pour la parallélisation que vous avez effectuée en 2.
+- Est-ce que cette stratégie mise en place serait optimale pour la parallélisation que vous avez effectuée en 2.
 - Paralléliser le programme `double_size.py` correspondant à ce problème
-- Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs que vous disposez) la courbe d'accélération de votre programme paralléle.
+- Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs dont vous disposez) la courbe d'accélération de votre programme paralléle.
 
 ### 4. Parallélisation d'une photo en haute résolution (2)
 
-Le but de ce programme est de doubler la taille d'une photo tout en évitant d'avoir une photo pixelliser à la fin.
+Le but de ce programme est de doubler la taille d'une photo tout en évitant d'avoir une photo pixellisée à la fin.
 
 On cherche à ce que chaque processus utilise un minimum de mémoire en évitant de prendre des bouts d'images trop grand par processus (que le strict minimum nécessaire pour la parallélisation).
 
 On applique le filtre $F_{G}$ sur les deux composantes $H$ et $S$ de l'image et le filtre $F_{D}$ sur la composante $V$ de l'image.
 
 - Expliquer votre stratégie de parallélisation et pourquoi ce type de parallélisation est adapté à votre problème.
-- Différence, désavantages et avantages de votre stratégie de parallélisation par rapport à la question précédente ?
+- Quelles sont les différences, désavantages et avantages de votre stratégie de parallélisation par rapport à la question précédente ?
 - Paralléliser le programme `double_size2.py` correspondant à ce problème
-- Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs que vous disposez) la courbe d'accélération de votre programme paralléle.
+- Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs dont vous disposez) la courbe d'accélération de votre programme paralléle.
