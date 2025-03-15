@@ -68,7 +68,7 @@ $$
 
 Donner le nombre de cœurs logiques contenus sur votre machine ainsi que la taille des mémoires caches L1, L2 et L3.
 
-### 2. Parallélisation d'images issues d'une vidéo
+### 2. Parallélisation d'images issues d'une vidéo
 
 Le but de ce programme est de doubler la taille des images d'une vidéo sans trop pixelliser les images agrandies.
 
@@ -91,7 +91,7 @@ On applique ici consécutivement les filtres $F_{G}$ sur les trois composantes H
 - Paralléliser le programme `double_size.py` correspondant à ce problème
 - Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs que vous disposez) la courbe d'accélération de votre programme paralléle.
 
-### 4. Parallélisation d'une photo en haute résolution (2)
+### 4. Parallélisation d'une photo en haute résolution (2)
 
 Le but de ce programme est de doubler la taille d'une photo tout en évitant d'avoir une photo pixelliser à la fin.
 
