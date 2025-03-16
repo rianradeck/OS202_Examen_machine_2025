@@ -64,6 +64,8 @@ $$
 
 ## B] À FAIRE
 
+Les codes seront parallélisés en utilisant MPI.
+
 ### 1. Environnement de calcul
 
 Donner le nombre de cœurs logiques contenus sur votre machine ainsi que la taille des mémoires caches L1, L2 et L3.
