@@ -23,7 +23,7 @@ L'idée va être de lisser l'image à l'aide d'un flou gaussien sur les trois co
 netteté uniquement sur la composante V. L'idée est que l'œil humain voit avec précision les niveaux de gris mais très grossièrement les couleurs (le cerveau faisant ensuite un traitement pour composer *in fine* une image en couleur précise !)
 
 Pour ces deux filtres, on va utiliser des convolutions discrètes en 2D. Une convolution discrète en 2D est une généralisation de la convolution
-en 1D et consiste à avoir pour fonction de convolution une matrice $F$ de dimension $(2m+1)\times (2n+1)$ dont les indices pour les lignes et les colonnes commencent à $-m$ et finissent en $+m$ pour les lignes et $-n$ à $n$ pour les colonnes. Le champ à convoler sera une grille 2D $G$ ayant pour valeurs $g_{ij}$ pour la ième ligne et jème colonne dont les conditions limites seront pris comme une "répétition des valeurs au bord du domaine" (en fait une condition de Neumann).
+en 1D et consiste à avoir pour fonction de convolution une matrice $F$ de dimension $(2m+1)\times (2n+1)$ dont les indices pour les lignes et les colonnes commencent à $-m$ et finissent en $+m$ pour les lignes et $-n$ à $n$ pour les colonnes. Le champ à convoler sera une grille 2D $G$ ayant pour valeurs $g_{ij}$ pour la ième ligne et jème colonne. Les conditions limites seront prises comme une "répétition des valeurs au bord du domaine" (correspond à l'argument `mode='same'` de la fonction `signal.convolve2d`).
 
 La grille $C = F\star G$ convolée sera obtenue pour la valeur $c_{ij}$ se trouvant à la ième ligne et jème colonne par :
 
@@ -77,6 +77,12 @@ On va donc appliquer les filtres $F_{G}$ et $F_{S}$ vus plus haut sur un grand n
 - Expliquer votre stratégie de parallélisation et pourquoi ce type de parallélisation est bien adapté à ce problème et est optimal.
 - Paralléliser le programme `movie_filter.py` correspondant à ce problème.
 - Calculer en fonction du nombre de processus utilisé (dans la limite du nombre de coeurs dont vous disposez) la courbe d'accélération de votre programme parallèle.
+
+Le répertoire `sorties/perroquets` contient un fichier `perroquets.md5sum`. Celui-ci peut être utilisé pour vérifier que votre parallélisation n'a pas modifié les images résultats :
+
+	cd sorties/perroquets
+	md5sum -c perroquets.md5sum
+
 
 ### 3. Parallélisation d'une photo en haute résolution (1)
 
