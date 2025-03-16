@@ -14,7 +14,7 @@ def apply_filter(image):
     # Conversion en HSV :
     img = img.convert('HSV')
     # On convertit l'image en tableau numpy et on normalise
-    #img = np.repeat(np.repeat(np.array(img),2,axis=0),2,axis=1)
+    img = np.repeat(np.repeat(np.array(img),2,axis=0),2,axis=1)
     img = np.array(img,dtype=np.double)/255.
     print(f"Nouvelle taille : {img.shape}")
     # Tout d'abord, on crée un masque de flou gaussien
