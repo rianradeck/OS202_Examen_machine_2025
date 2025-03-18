@@ -6,6 +6,7 @@ import os
 import numpy as np
 from scipy import signal
 
+
 # Fonction pour appliquer un filtre de netteté à une image
 def apply_filter(image):
     # On charge l'image
@@ -14,13 +15,13 @@ def apply_filter(image):
     # Conversion en HSV :
     img = img.convert('HSV')
     # On convertit l'image en tableau numpy et on normalise
-    #img = np.repeat(np.repeat(np.array(img),2,axis=0),2,axis=1)
-    img = np.array(img,dtype=np.double)/255.
+    img = np.repeat(np.repeat(np.array(img), 2, axis=0), 2, axis=1)
+    img = np.array(img, dtype=np.double)/255.
     print(f"Nouvelle taille : {img.shape}")
     # Tout d'abord, on crée un masque de flou gaussien
     mask = np.array([[1., 2., 1.], [2., 4., 2.], [1., 2., 1.]]) / 16.
     # On applique le filtre de flou
-    blur_image = np.zeros_like(img,dtype=np.double)
+    blur_image = np.zeros_like(img, dtype=np.double)
     for i in range(3):
         blur_image[:,:,i] = signal.convolve2d(img[:,:,i], mask, mode='same')
     # On crée un masque de netteté
@@ -34,6 +35,7 @@ def apply_filter(image):
     sharpen_image = sharpen_image.astype(np.uint8)
     # On retourne l'image modifiée
     return Image.fromarray(sharpen_image, 'HSV').convert('RGB')
+
 
 path = "datas/perroquets/"
 # On crée un dossier de sortie

@@ -12,7 +12,9 @@ def double_size(image):
     print(f"Taille originale {img.size}")
     img = img.convert('HSV')
     # On convertit l'image en tableau numpy
-    img = np.repeat(np.repeat(np.array(img,dtype=np.double),2,axis=0),2,axis=1)/255.
+    img = np.array(img, dtype=np.double)
+    # On double sa taille et on normalise
+    img = np.repeat(np.repeat(img, 2, axis=0), 2, axis=1)/255.
     print(f"Nouvelle taille : {img.shape}")
     # On crée un masque de flou gaussien pour la teinte et la saturation (H et S)
     mask = np.array([[1., 2., 1.], [2., 4., 2.], [1., 2., 1.]]) / 16.
