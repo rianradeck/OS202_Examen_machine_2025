@@ -5,7 +5,13 @@ from PIL import Image
 import os
 import numpy as np
 from scipy import signal
+import time
 
+from mpi4py import MPI
+
+globCom = MPI.COMM_WORLD
+nbp     = globCom.size
+rank    = globCom.rank
 
 # Fonction pour appliquer un filtre de netteté à une image
 def apply_filter(image):
@@ -36,23 +42,36 @@ def apply_filter(image):
     # On retourne l'image modifiée
     return Image.fromarray(sharpen_image, 'HSV').convert('RGB')
 
-
+start_of_time = time.time()
 path = "datas/perroquets/"
 # On crée un dossier de sortie
 if not os.path.exists("sorties/perroquets"):
     os.makedirs("sorties/perroquets")
 out_path = "sorties/perroquets/"
 
+treatment_times = []
 output_images = []
-for i in range(37):
+rank_range = range(rank, 37, nbp)
+print(f"Rank {rank} will treat {len(rank_range)} images: {rank_range}")
+for i in rank_range:
+    start = time.time()
     image = path + "Perroquet{:04d}.jpg".format(i+1)
     sharpen_image = apply_filter(image)
     # On sauvegarde l'image modifiée
     output_images.append(sharpen_image)
     print(f"Image {i+1} traitée")
+    treatment_times.append(time.time() - start)
+    print(f"Temps de traitement: {treatment_times[-1]}")
 print("Traitement terminé")
+
+if rank == 0:
+    print(f"Temps moyen de traitement: {np.mean(treatment_times)}")
+    print(f"Temps total de traitement: {np.sum(treatment_times)}")
 
 # On sauvegarde les images modifiées
 for i, img in enumerate(output_images):
     img.save(out_path + "Perroquet{:04d}.jpg".format(i+1))
 print("Images sauvegardées")
+
+if rank == 0:
+    print("Gobal time: ", time.time() - start_of_time)
